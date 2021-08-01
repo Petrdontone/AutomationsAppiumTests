@@ -12,7 +12,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.net.URL;
 
 
-public class Ex3
+public class Ex4
 {
     private AppiumDriver driver;
 
@@ -38,9 +38,8 @@ public class Ex3
         driver.quit();
     }
 
-
     @Test
-    public void testForCancelSearch()
+    public void checkingWordInSearch()
     {
         waitSecondMethodAndClick
                 (
@@ -48,6 +47,7 @@ public class Ex3
                         "Cannot find this word - SKIP",
                         5
                 );
+
         waitSecondMethodAndClick
                 (
                         By.xpath("//*[contains(@text, 'Search Wikipedia')]"),
@@ -59,52 +59,15 @@ public class Ex3
         waitThirdMethodAndSendKeys
                 (
                         By.xpath("//*[contains(@text, 'Search Wikipedia')]"),
-                        "Queen",
+                        "Java",
                         "Cannot find out Queen Victoria:)",
-                        5
-                );
-
-        waitSecondMethodAndClick
-                (
-                        By.xpath("//*[contains(@text, 'British rock band formed in 1970')]"),
-                        "These words were not found",
-                        8
-                );
-
-        WebElement title_element = waitFirstMainMethod
-                (
-                        By.xpath("//*[contains(@text, 'Theme')]"),
-                        "Cannot find article title",
-                        13
-                );
-
-        String article_title = title_element.getAttribute("text");
-
-        Assert.assertEquals
-                (
-                        "We see unexpected title",
-                        "Theme",
-                        article_title
-                );
-
-        waitSecondMethodAndClick
-                (
-                        By.xpath("//android.widget.ImageButton[@content-desc=\"Navigate up\"]"),
-                        "Cannot find this xpath for Navigate up",
-                        6
-                );
-
-       waitSecondMethodAndClick
-                (
-                        By.xpath("//*[contains(@text, 'Topics referred to by the same term')]"),
-                        "Cannot find for Victoria",
                         5
                 );
 
         WebElement title_element1 = waitFirstMainMethod
                 (
-                        By.xpath("//*[contains(@text, 'Save')]"),
-                        "Cannot find article title",
+                        By.xpath("//*[contains(@text, 'JavaScript')]"),
+                        "Cannot find article title first",
                         13
                 );
 
@@ -113,28 +76,16 @@ public class Ex3
         Assert.assertEquals
                 (
                         "We see unexpected title",
-                        "Save",
+                        "JavaScript",
                         article_title1
                 );
 
-        waitSecondMethodAndClick
-                (
-                        By.xpath("//android.widget.ImageButton[@content-desc=\"Navigate up\"]"),
-                        "Cannot find this xpath for Navigate up",
-                        6
-                );
 
-        waitSecondMethodAndClick
-                (
-                        By.id("org.wikipedia:id/search_close_btn"),
-                        "Cannot find for close button",
-                        5
-                );
 
         WebElement title_element2 = waitFirstMainMethod
                 (
-                        By.xpath("//*[contains(@text, 'Search Wikipedia')]"),
-                        "Cannot find article title",
+                        By.xpath("//*[contains(@text, 'Java (programming language)')]"),
+                        "Cannot find article title second",
                         13
                 );
 
@@ -143,17 +94,39 @@ public class Ex3
         Assert.assertEquals
                 (
                         "We see unexpected title",
-                        "Search Wikipedia",
+                        "Java (programming language)",
                         article_title2
+                );
+
+
+        WebElement title_element3 = waitFirstMainMethod
+                (
+                        By.id("org.wikipedia:id/page_list_item_title"),
+                        "Cannot find article title third",
+                        13
+                );
+
+        String article_title3 = title_element3.getAttribute("text");
+
+        Assert.assertEquals
+                (
+                        "We see unexpected title",
+                        "Java",
+                        article_title3
                 );
     }
 
 
+
+
+
+
+
     private WebElement waitFirstMainMethod(By by, String error_message, int timeoutInSeconds)
     {
-            WebDriverWait wait = new WebDriverWait(driver, timeoutInSeconds);
-            wait.withMessage(error_message + "\n");
-            return wait.until(ExpectedConditions.presenceOfElementLocated(by));
+        WebDriverWait wait = new WebDriverWait(driver, timeoutInSeconds);
+        wait.withMessage(error_message + "\n");
+        return wait.until(ExpectedConditions.presenceOfElementLocated(by));
     }
 
     private WebElement waitSecondMethodAndClick(By by, String error_message, int timeoutInSeconds)
