@@ -39,25 +39,82 @@ public class Ex2
     }
 
     @Test
-    public void methodCreation()
+    public void checkingWordInSearch()
     {
+        waitSecondMethodAndClick
+                (
+                        By.xpath("//*[contains(@text, 'SKIP')]"),
+                        "Cannot find this word - SKIP",
+                        5
+                );
 
-        WebElement title_element2 = assertElementHasText
+        waitSecondMethodAndClick
                 (
                         By.xpath("//*[contains(@text, 'Search Wikipedia')]"),
-                        "Cannot find article title",
+                        "Cannot find Search Wikipedia",
+                        5
+
+                );
+
+        waitThirdMethodAndSendKeys
+                (
+                        By.xpath("//*[contains(@text, 'Search Wikipedia')]"),
+                        "Peter",
+                        "Cannot find out Queen Victoria:)",
+                        5
+                );
+
+
+        WebElement title_element1 = assertElementHasText
+                (
+                        By.xpath("//*[contains(@text, '19th United States secretary of transportation and former Mayor of South Bend, Indiana')]"),
+                        "Cannot find article title first",
                         13
                 );
 
-        String article_title = title_element2.getAttribute("text");
+        String article_title1 = title_element1.getAttribute("text");
 
         Assert.assertEquals
                 (
                         "We see unexpected title",
-                        "Search Wikipedia",
-                        article_title
+                        "19th United States secretary of transportation and former Mayor of South Bend, Indiana",
+                        article_title1
                 );
     }
+        @Test
+        public void checkingWord()
+        {
+
+            waitSecondMethodAndClick
+                    (
+                            By.xpath("//*[contains(@text, 'SKIP')]"),
+                            "Cannot find this word - SKIP",
+                            5
+                    );
+
+            WebElement title_element2 = assertElementHasText
+                (
+                        By.xpath("//*[contains(@text, 'Search Wikipedia')]"),
+                        "Cannot find article title first",
+                        13
+                );
+
+            String article_title2 = title_element2.getAttribute("text");
+
+            Assert.assertEquals
+                (
+                        "We see unexpected title",
+                        "Search Wikipedia",
+                        article_title2
+                );
+
+    }
+
+
+
+
+
+
 
     private WebElement assertElementHasText(By by, String error_message, int timeoutInSeconds)
     {
@@ -66,7 +123,6 @@ public class Ex2
         return wait.until(ExpectedConditions.presenceOfElementLocated(by));
     }
 
-
     private WebElement waitSecondMethodAndClick(By by, String error_message, int timeoutInSeconds)
     {
         WebElement element = assertElementHasText(by, error_message, timeoutInSeconds);
@@ -74,5 +130,11 @@ public class Ex2
         return element;
     }
 
-}
+    private WebElement waitThirdMethodAndSendKeys(By by, String value, String error_message, int timeoutInSeconds)
+    {
+        WebElement element = assertElementHasText(by, error_message, timeoutInSeconds);
+        element.sendKeys(value);
+        return element;
+    }
 
+}
