@@ -147,6 +147,7 @@ public class FirstTest
                             "Cannot find our text for OOP",
                             13
                     );
+
             WebElement title_element = waitForElementPresent
                     (
                             By.id("org.wikipedia:id/article_menu_bookmark"),
