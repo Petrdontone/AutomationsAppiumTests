@@ -107,13 +107,10 @@ public class Ex2
                         "Search Wikipedia",
                         article_title2
                 );
-
     }
 
 
-
-
-
+    
 
 
     private WebElement assertElementHasText(By by, String error_message, int timeoutInSeconds)
