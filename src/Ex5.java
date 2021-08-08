@@ -222,7 +222,7 @@ public class Ex5
         TouchAction touchAction = new TouchAction(driver);
         touchAction
                 .press(PointOption.point(right_x, middle_y))
-                .waitAction(WaitOptions.waitOptions(Duration.ofMillis(300)))
+                .waitAction(WaitOptions.waitOptions(Duration.ofMillis(300))) //Чем меньше значение - тем быстрее свайп элемента
                 .moveTo(PointOption.point(left_x, middle_y))
                 .release()
                 .perform();
