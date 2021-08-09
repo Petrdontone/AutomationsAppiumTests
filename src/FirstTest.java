@@ -407,6 +407,8 @@ public class FirstTest
                             );
                 }
 
+
+
                 @Test
                 public void testChangeScreenOrientationOnSearchResults()
                 {
@@ -424,7 +426,7 @@ public class FirstTest
                                     5
                             );
 
-                    String search_line = "JavaScript";
+                    String search_line = "Javelin throw";
 
                     waitForElementAndSendKeys
                             (
@@ -437,14 +439,15 @@ public class FirstTest
                     waitForElementAndClick
                             (
 
-                                    By.xpath("//*[contains(@text,'Implementation of JavaScript')]"),
+                                    By.xpath("//*[contains(@text,'Track and field athletics event')]"),
                                     "Cannot find our text for OOP " + search_line,
                                     10
                             );
 
                     String title_before_rotation = waitForElementAndGetAttribute
                             (
-                                    By.id("org.wikipedia:id/article_menu_bookmark"),                                    "text",
+                                    By.xpath("//*[contains(@text,'Javelin throw')]"),
+                                    "text",
                                     "Cannot find title of article",
                                     15
                             );
@@ -453,7 +456,7 @@ public class FirstTest
 
                     String title_after_rotation = waitForElementAndGetAttribute
                             (
-                                    By.id("org.wikipedia:id/article_menu_bookmark"),
+                                    By.xpath("//*[contains(@text,'Javelin throw')]"),
                                     "text",
                                     "Cannot find title of article1",
                                     15
@@ -465,7 +468,33 @@ public class FirstTest
                                     title_before_rotation,
                                     title_after_rotation
                             );
+
+                    driver.rotate(ScreenOrientation.PORTRAIT);
+
+                    String title_after_second_rotation = waitForElementAndGetAttribute
+                            (
+                                    By.xpath("//*[contains(@text,'Javelin throw')]"),
+                                    "text",
+                                    "Cannot find title of article1",
+                                    15
+                            );
+
+
+                    Assert.assertEquals
+                            (
+                                    "Article title have been changed after screen rotation",
+                                    title_before_rotation,
+                                    title_after_second_rotation
+                            );
+
+                    waitForElementAndClear
+                            (
+                            By.xpath("//*[contains(@text,'Javelin throw')]"),
+                            "Cannot find title of article1",
+                            15
+                            );
                 }
+
 
                 @Test
                 public void testCheckSearchArticleInBackground()
@@ -507,6 +536,34 @@ public class FirstTest
                                     "Cannot find article after returning from background",
                                     13
                             );
+
+                    driver.rotate(ScreenOrientation.PORTRAIT);
+
+                    String title_after_rotation = waitForElementAndGetAttribute
+                            (
+                                    By.xpath("//*[contains(@text,'Java')]"),
+                                    "text",
+                                    "Cannot find title of article1",
+                                    15
+                            );
+
+                    driver.rotate(ScreenOrientation.LANDSCAPE);
+
+                    String title_after_second_rotation = waitForElementAndGetAttribute
+                            (
+                                    By.xpath("//*[contains(@text,'Java')]"),
+                                    "text",
+                                    "Cannot find title of article1",
+                                    15
+                            );
+
+                    Assert.assertEquals
+                            (
+                                    "Article title have been changed after screen rotation",
+                                    title_after_rotation,
+                                    title_after_second_rotation
+                            );
+
                 }
 
 
