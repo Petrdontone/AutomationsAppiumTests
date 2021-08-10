@@ -48,7 +48,8 @@ public class FirstTest
     }
 
    @Test
-    public void firstTest() {
+    public void firstTest()
+   {
         waitForElementAndClick
                 (
                         By.xpath("//*[contains(@text,'SKIP')]"),
@@ -83,7 +84,8 @@ public class FirstTest
 
 
     @Test
-    public void testCancelSearch() {
+    public void testCancelSearch()
+    {
         waitForElementAndClick
                 (
                         By.id("org.wikipedia:id/fragment_onboarding_skip_button"),
@@ -124,7 +126,8 @@ public class FirstTest
 
 
             @Test
-            public void testCompareArticleTitle() {
+            public void testCompareArticleTitle()
+            {
                 waitForElementAndClick
                         (
                                 By.xpath("//*[contains(@text,'SKIP')]"),

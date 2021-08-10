@@ -1,6 +1,7 @@
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.android.AndroidDriver;
 import org.junit.After;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.By;
@@ -9,7 +10,7 @@ import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import java.net.URL;
-
+import java.util.List;
 
 
 public class Ex6
@@ -72,12 +73,9 @@ public class Ex6
                         5
                 );
 
-        assertElementPresent
-                (
-                        By.xpath("//android.view.View[@text='JavaScript']"),
-                        "Cannot find search article",
-                        0
-                );
+        String xpath_locator = "//android.view.View[@text='JavaScript']";
+
+
     }
 
     private WebElement assertElementPresent(By by, String error_message, int timeoutInSeconds)
@@ -100,5 +98,7 @@ public class Ex6
         element.sendKeys(value);
         return element;
     }
+
+
 
 }
