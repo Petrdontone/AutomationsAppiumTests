@@ -1,7 +1,6 @@
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.android.AndroidDriver;
 import org.junit.After;
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.By;
@@ -18,8 +17,7 @@ public class Ex6
     private AppiumDriver driver;
 
     @Before
-    public void setUp() throws Exception
-    {
+    public void setUp() throws Exception {
         DesiredCapabilities capabilities = new DesiredCapabilities();
 
         capabilities.setCapability("platformName", "Android");
@@ -34,8 +32,7 @@ public class Ex6
     }
 
     @After
-    public void tearDown()
-    {
+    public void tearDown() {
         driver.quit();
     }
 
@@ -56,27 +53,32 @@ public class Ex6
                         5
                 );
 
-        String firstValue = "JavaScript";
+        String firstValue = "John Cena";
 
         waitThirdMethodAndSendKeys
                 (
                         By.xpath("//*[contains(@text, 'Search Wikipedia')]"),
                         firstValue,
-                        "Cannot find in search 'JavaScript'",
+                        "Cannot find in search 'John Cena'",
                         5
                 );
 
         waitSecondMethodAndClick
                 (
-                    By.xpath("//*[contains(@text, 'High-level programming language')]"),
+                        By.xpath("//*[contains(@text, 'American professional wrestler and actor')]"),
                         "Cannot find this word 'JavaScript'",
                         5
                 );
 
-        String xpath_locator = "//android.view.View[@text='JavaScript']";
+        String search_line_Cena = "org.wikipedia:id/article_menu_bookmark";
 
-
+        assertElementNotPresent
+                (
+                        By.id(search_line_Cena),
+                        "We don't search this line"
+                );
     }
+
 
     private WebElement assertElementPresent(By by, String error_message, int timeoutInSeconds)
     {
@@ -99,6 +101,20 @@ public class Ex6
         return element;
     }
 
+    private boolean getAmountOfElements(By by)
+    {
+        List elements = driver.findElements(by);
+        return elements.contains(By.id("org.wikipedia:id/article_menu_bookmark"));
+    }
 
+    private void assertElementNotPresent(By by, String error_message)
+    {
+        boolean amount_of_elements = getAmountOfElements(by);
+        if (!amount_of_elements)
+        {
+            String default_message = "An element '" + by.toString() + "' supposed to be not present";
+            throw new AssertionError(default_message + " " + error_message);
+        }
+    }
 
 }
