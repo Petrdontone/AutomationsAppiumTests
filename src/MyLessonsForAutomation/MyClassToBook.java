@@ -1,4 +1,4 @@
-/*
+package MyLessonsForAutomation;/*
 public class MyClassToBook
 {
     public static void main(String[] args)

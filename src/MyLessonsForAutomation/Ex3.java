@@ -1,3 +1,5 @@
+package MyLessonsForAutomation;
+
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.android.AndroidDriver;
 import org.junit.After;

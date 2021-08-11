@@ -1,7 +1,8 @@
+package MyLessonsForAutomation;
+
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.android.AndroidDriver;
 import org.junit.After;
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.By;
@@ -10,15 +11,15 @@ import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import java.net.URL;
+import java.util.List;
 
 
-public class Ex4
+public class Ex6
 {
     private AppiumDriver driver;
 
     @Before
-    public void setUp() throws Exception
-    {
+    public void setUp() throws Exception {
         DesiredCapabilities capabilities = new DesiredCapabilities();
 
         capabilities.setCapability("platformName", "Android");
@@ -33,13 +34,13 @@ public class Ex4
     }
 
     @After
-    public void tearDown()
-    {
+    public void tearDown() {
         driver.quit();
     }
 
+
     @Test
-    public void checkingWordInSearch()
+    public void assertTitle()
     {
         waitSecondMethodAndClick
                 (
@@ -47,82 +48,41 @@ public class Ex4
                         "Cannot find this word - SKIP",
                         5
                 );
-
         waitSecondMethodAndClick
                 (
                         By.xpath("//*[contains(@text, 'Search Wikipedia')]"),
                         "Cannot find Search Wikipedia",
                         5
-
                 );
+
+        String firstValue = "John Cena";
 
         waitThirdMethodAndSendKeys
                 (
                         By.xpath("//*[contains(@text, 'Search Wikipedia')]"),
-                        "Java",
-                        "Cannot find out Queen Victoria:)",
+                        firstValue,
+                        "Cannot find in search 'John Cena'",
                         5
                 );
 
-        WebElement title_element1 = waitFirstMainMethod
+        waitSecondMethodAndClick
                 (
-                        By.xpath("//*[contains(@text, 'JavaScript')]"),
-                        "Cannot find article title first",
-                        13
+                        By.xpath("//*[contains(@text, 'American professional wrestler and actor')]"),
+                        "Cannot find this word 'JavaScript'",
+                        5
                 );
 
-        String article_title1 = title_element1.getAttribute("text");
+        String search_line_Cena = "org.wikipedia:id/article_menu_bookmark";
 
-        Assert.assertEquals
+        assertElementNotPresent
                 (
-                        "We see unexpected title",
-                        "JavaScript",
-                        article_title1
-                );
-
-
-
-        WebElement title_element2 = waitFirstMainMethod
-                (
-                        By.xpath("//*[contains(@text, 'Java (programming language)')]"),
-                        "Cannot find article title second",
-                        13
-                );
-
-        String article_title2 = title_element2.getAttribute("text");
-
-        Assert.assertEquals
-                (
-                        "We see unexpected title",
-                        "Java (programming language)",
-                        article_title2
-                );
-
-
-        WebElement title_element3 = waitFirstMainMethod
-                (
-                        By.id("org.wikipedia:id/page_list_item_title"),
-                        "Cannot find article title third",
-                        13
-                );
-
-        String article_title3 = title_element3.getAttribute("text");
-
-        Assert.assertEquals
-                (
-                        "We see unexpected title",
-                        "Java",
-                        article_title3
+                        By.id(search_line_Cena),
+                        "We don't search this line"
                 );
     }
 
 
-
-
-
-
-
-    private WebElement waitFirstMainMethod(By by, String error_message, int timeoutInSeconds)
+    private WebElement assertElementPresent(By by, String error_message, int timeoutInSeconds)
     {
         WebDriverWait wait = new WebDriverWait(driver, timeoutInSeconds);
         wait.withMessage(error_message + "\n");
@@ -131,16 +91,32 @@ public class Ex4
 
     private WebElement waitSecondMethodAndClick(By by, String error_message, int timeoutInSeconds)
     {
-        WebElement element = waitFirstMainMethod(by, error_message, timeoutInSeconds);
+        WebElement element = assertElementPresent(by, error_message, timeoutInSeconds);
         element.click();
         return element;
     }
 
     private WebElement waitThirdMethodAndSendKeys(By by, String value, String error_message, int timeoutInSeconds)
     {
-        WebElement element = waitFirstMainMethod(by, error_message, timeoutInSeconds);
+        WebElement element = assertElementPresent(by, error_message, timeoutInSeconds);
         element.sendKeys(value);
         return element;
+    }
+
+    private boolean getAmountOfElements(By by)
+    {
+        List elements = driver.findElements(by);
+        return elements.contains(By.id("org.wikipedia:id/article_menu_bookmark"));
+    }
+
+    private void assertElementNotPresent(By by, String error_message)
+    {
+        boolean amount_of_elements = getAmountOfElements(by);
+        if (!amount_of_elements)
+        {
+            String default_message = "An element '" + by.toString() + "' supposed to be not present";
+            throw new AssertionError(default_message + " " + error_message);
+        }
     }
 
 }

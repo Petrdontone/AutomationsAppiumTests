@@ -590,7 +590,7 @@ public class FirstTest
     private WebElement waitForElementAndSendKeys(By by, String value, String error_message, long timeoutInSeconds)
     {
         WebElement element = waitForElementPresent(by, error_message, timeoutInSeconds);
-        element.sendKeys(value);
+        element.sendKeys(value); 
         return element;
     }
 
