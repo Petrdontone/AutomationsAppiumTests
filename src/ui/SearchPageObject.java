@@ -10,6 +10,7 @@ public class SearchPageObject extends MainPageObject
             SEARCH_INIT_ELEMENT = "//*[contains(@text,'Search Wikipedia')]",
             SEARCH_INPUT = "//*[contains(@text,'Search Wikipedia')]",
             SEARCH_CANCEL_BUTTON = "//android.widget.ImageView[@content-desc=\"Search Wikipedia\"]\n",
+            SEARCH_CANNOT_BUTTON = "org.wikipedia:id/search_src_text",
             TYPE_CLEAR_LINE = "org.wikipedia:id/search_src_text",
             SEARCH_RESULT_BY_STRING_TPL = "//*[contains(@text,'{SUBSTRING}')]",
             SEARCH_RESULT_ELEMENT = "//*[@resource-id='org.wikipedia:id/search_results_list']",
@@ -42,6 +43,11 @@ public class SearchPageObject extends MainPageObject
     public void waitForCancelButtonAppear()
     {
         this.waitForElementPresent(By.xpath(SEARCH_CANCEL_BUTTON), "Cannot find search cancel button", 5);
+    }
+
+    public void waitForCancelButtonToDisappear()
+    {
+        this.waitForElementPresent(By.id(SEARCH_CANNOT_BUTTON), "Cannot find this element id", 5);
     }
 
     public void clearLine()
