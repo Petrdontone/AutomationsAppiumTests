@@ -6,12 +6,10 @@ import MethodsSpesialForTestsAndLessons.NavigationUICloneSpecialForLessons;
 import MethodsSpesialForTestsAndLessons.SearchPageObjectCloneSpecialForLessons;
 import org.junit.Test;
 
-public class SearchRelatedTests extends ConfigurationForTests
-{
+public class SearchRelatedTests extends ConfigurationForTests {
 
     @Test
-    public void testCheckingWordInSearch()
-    {
+    public void testCheckingWordInSearch() {
 
         {
             SearchPageObjectCloneSpecialForLessons SearchPageObjectCloneSpecialForLessons = new SearchPageObjectCloneSpecialForLessons(driver);
@@ -22,9 +20,9 @@ public class SearchRelatedTests extends ConfigurationForTests
             SearchPageObjectCloneSpecialForLessons.waitForSearchResult("High-level programming language");
         }
 
-            ArticlePageObjectCloneSpecialForLessons ArticlePageObjectCloneSpecialForLessons = new ArticlePageObjectCloneSpecialForLessons(driver);
-            String article_title = ArticlePageObjectCloneSpecialForLessons.getArticleTitleForXpath();
-            assertEquals
+        ArticlePageObjectCloneSpecialForLessons ArticlePageObjectCloneSpecialForLessons = new ArticlePageObjectCloneSpecialForLessons(driver);
+        String article_title = ArticlePageObjectCloneSpecialForLessons.getArticleTitleForXpath();
+        assertEquals
                 (
                         "We see unexpected title",
                         "High-level programming language",
@@ -34,8 +32,7 @@ public class SearchRelatedTests extends ConfigurationForTests
 
 
     @Test
-    public void testForCancelSearch()
-    {
+    public void testForCancelSearch() {
         SearchPageObjectCloneSpecialForLessons SearchPageObjectCloneSpecialForLessons = new SearchPageObjectCloneSpecialForLessons(driver);
 
         SearchPageObjectCloneSpecialForLessons.skipSearchLine();
@@ -61,6 +58,26 @@ public class SearchRelatedTests extends ConfigurationForTests
         NavigationUICloneSpecialForLessons.clickMyNavigateUp();
         SearchPageObjectCloneSpecialForLessons.waitForCancelButtonToDisappear();
 
+    }
+
+    @Test
+    public void testAssertTitle()
+    {
+        SearchPageObjectCloneSpecialForLessons SearchPageObjectCloneSpecialForLessons = new SearchPageObjectCloneSpecialForLessons(driver);
+
+        SearchPageObjectCloneSpecialForLessons.skipSearchLine();
+        SearchPageObjectCloneSpecialForLessons.initSearchInput();
+        SearchPageObjectCloneSpecialForLessons.typeSearchLine("New York City");
+        SearchPageObjectCloneSpecialForLessons.clickByArticleWithSubstring("Most populous city in the United States");
+
+        ArticlePageObjectCloneSpecialForLessons ArticlePageObjectCloneSpecialForLessons = new ArticlePageObjectCloneSpecialForLessons(driver);
+        String article_title = ArticlePageObjectCloneSpecialForLessons.getArticleTitle();
+        assertEquals
+                (
+                        "We see unexpected title",
+                        "Save",
+                        article_title
+                );
     }
 }
 
