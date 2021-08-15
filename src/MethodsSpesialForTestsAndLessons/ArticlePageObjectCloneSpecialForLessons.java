@@ -8,6 +8,7 @@ import org.openqa.selenium.WebElement;
 public class ArticlePageObjectCloneSpecialForLessons extends MethodsObjectMainInMyTests
 {
     private static final String
+            TITLE1 = "//*[@text='High-level programming language']",
             TITLE = "org.wikipedia:id/article_menu_bookmark",
             FOOTER_ELEMENT = "//*[@text='View edit history']",
             OPTIONS_BUTTON = "org.wikipedia:id/article_menu_bookmark",
@@ -34,6 +35,19 @@ public class ArticlePageObjectCloneSpecialForLessons extends MethodsObjectMainIn
         WebElement title_element = waitForTitleElement();
         return title_element.getAttribute("text");
     }
+//BAD IDEAS
+    public WebElement waitForTitleElementForXpath()
+    {
+        return this.waitFirstMainMethod(By.xpath(TITLE1), "Cannot find article title on page for xpath!", 10);
+    }
+
+
+    public String getArticleTitleForXpath()
+    {
+        WebElement title_element = waitForTitleElementForXpath();
+        return title_element.getAttribute("text");
+    }
+    //BAD IDEAS
 
     public void swipeToFooter()
     {

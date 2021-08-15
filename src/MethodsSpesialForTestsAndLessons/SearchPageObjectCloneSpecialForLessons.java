@@ -12,11 +12,11 @@ public class SearchPageObjectCloneSpecialForLessons extends MethodsObjectMainInM
             SEARCH_INPUT = "//*[contains(@text,'Search Wikipedia')]",
             SEARCH_INPUT_ON_ADD_LIST = "//*[contains(@text,'Name of this list')]",
             SEARCH_CANCEL_BUTTON = "//*[contains(@text,'Japan')]",
-            SEARCH_CANNOT_BUTTON = "org.wikipedia:id/search_src_text",
+            SEARCH_CANNOT_BUTTON = "org.wikipedia:id/search_close_btn",
             TYPE_CLEAR_LINE = "org.wikipedia:id/search_src_text",
             SEARCH_RESULT_BY_STRING_TPL = "//*[contains(@text,'{SUBSTRING}')]",
             SEARCH_RESULT_ELEMENT = "//*[@resource-id='org.wikipedia:id/search_results_list']",
-            SEARCH_EMPTY_RESULT = "//*[@text='No results']",
+            SEARCH_EMPTY_RESULT = "//*[@text='Theme']",
             SEARCH_ASSERT_RESULT = "//*[@resource-id='org.wikipedia:id/search_results_list']";
 
     public SearchPageObjectCloneSpecialForLessons(AppiumDriver driver)
@@ -65,7 +65,7 @@ public class SearchPageObjectCloneSpecialForLessons extends MethodsObjectMainInM
 
     public void waitForCancelButtonToDisappear()
     {
-        this.waitForElementNotPresent(By.id(SEARCH_CANNOT_BUTTON), "Cannot find this element id", 5);
+        this.waitSecondMethodAndClick(By.id(SEARCH_CANNOT_BUTTON), "Cannot find this element id", 5);
     }
 
     public void clearLine()

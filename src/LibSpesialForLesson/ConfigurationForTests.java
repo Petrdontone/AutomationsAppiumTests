@@ -55,6 +55,5 @@ public class ConfigurationForTests extends TestCase
     {
         driver.runAppInBackground(Duration.ofSeconds(seconds));
     }
-
 }
 
