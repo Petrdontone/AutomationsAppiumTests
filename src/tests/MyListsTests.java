@@ -33,3 +33,5 @@ public class MyListsTests extends CoreTestCase
         MyListsPageObject.swipeByArticleToDelete(article_title);
     }
 }
+
+

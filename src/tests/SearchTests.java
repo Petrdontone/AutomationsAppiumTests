@@ -60,3 +60,5 @@ public class SearchTests extends CoreTestCase
         SearchPageObject.assertThereIsNoResultOfSearch();
     }
 }
+
+

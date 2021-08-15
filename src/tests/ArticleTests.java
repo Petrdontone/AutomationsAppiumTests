@@ -43,3 +43,5 @@ public class ArticleTests extends CoreTestCase
         ArticlePageObject.swipeToFooter();
     }
 }
+
+

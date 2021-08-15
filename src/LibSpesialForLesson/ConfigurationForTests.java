@@ -1,4 +1,4 @@
-package lib;
+package LibSpesialForLesson;
 
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.android.AndroidDriver;
@@ -9,7 +9,7 @@ import org.openqa.selenium.remote.DesiredCapabilities;
 import java.net.URL;
 import java.time.Duration;
 
-public class CoreTestCase extends TestCase
+public class ConfigurationForTests extends TestCase
 {
     protected AppiumDriver driver;
     private static String AppiumURL = "http://127.0.0.1:4723/wd/hub";
@@ -55,6 +55,6 @@ public class CoreTestCase extends TestCase
     {
         driver.runAppInBackground(Duration.ofSeconds(seconds));
     }
-}
 
+}
 
