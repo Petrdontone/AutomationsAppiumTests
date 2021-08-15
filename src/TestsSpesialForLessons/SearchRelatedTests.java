@@ -1,4 +1,4 @@
-package TestsSpesialForLessons;
+/*package TestsSpesialForLessons;
 
 import LibSpesialForLesson.ConfigurationForTests;
 import MethodsSpesialForTestsAndLessons.ArticlePageObjectCloneSpecialForLessons;
@@ -248,4 +248,6 @@ public class SearchRelatedTests extends ConfigurationForTests
     }
 }
 
+
+ */
 
