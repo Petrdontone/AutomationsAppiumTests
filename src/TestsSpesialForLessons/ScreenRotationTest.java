@@ -60,10 +60,10 @@ public class ScreenRotationTest extends ConfigurationForTests
         SearchPageObjectCloneSpecialForLessons.typeSearchLine(search_line);
         SearchPageObjectCloneSpecialForLessons.waitForSearchResult(search_line);
 
-        driver.runAppInBackground(Duration.ofSeconds(3));
+        this.backgroundApp(5);
 
         SearchPageObjectCloneSpecialForLessons.waitForSearchResult(search_line);
-        driver.rotate(ScreenOrientation.PORTRAIT);
+        this.rotateScreenPortrait();
 
         String title_after_rotation = SearchPageObjectCloneSpecialForLessons.waitForElementAndGetAttribute
                 (
@@ -73,7 +73,7 @@ public class ScreenRotationTest extends ConfigurationForTests
                         15
                 );
 
-        driver.rotate(ScreenOrientation.LANDSCAPE);
+        this.rotateScreenLandscape();
 
         String title_after_second_rotation = SearchPageObjectCloneSpecialForLessons.waitForElementAndGetAttribute
                 (

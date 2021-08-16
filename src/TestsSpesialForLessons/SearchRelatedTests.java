@@ -6,10 +6,12 @@ import MethodsSpesialForTestsAndLessons.NavigationUICloneSpecialForLessons;
 import MethodsSpesialForTestsAndLessons.SearchPageObjectCloneSpecialForLessons;
 import org.junit.Test;
 
-public class SearchRelatedTests extends ConfigurationForTests {
+public class SearchRelatedTests extends ConfigurationForTests
+{
 
     @Test
-    public void testCheckingWordInSearch() {
+    public void testCheckingWordInSearch()
+    {
 
         {
             SearchPageObjectCloneSpecialForLessons SearchPageObjectCloneSpecialForLessons = new SearchPageObjectCloneSpecialForLessons(driver);
