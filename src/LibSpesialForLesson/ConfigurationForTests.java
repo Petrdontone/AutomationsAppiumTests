@@ -27,7 +27,7 @@ public class ConfigurationForTests extends TestCase
         capabilities.setCapability("automationName","Appium");
         capabilities.setCapability("appPackage","org.wikipedia");
         capabilities.setCapability("appActivity",".main.MainActivity");
-        capabilities.setCapability("app","/Users/user/Desktop/JavaAppium/apks/org.wikipedia_50363_apps.evozi.com (1).apk");
+        capabilities.setCapability("app","/Users/user/MyProjectGood/apks/org.wikipedia_50370_apps.evozi.com.apk");
 
         driver = new AndroidDriver(new URL(AppiumURL), capabilities);
         this.rotateScreenPortrait();

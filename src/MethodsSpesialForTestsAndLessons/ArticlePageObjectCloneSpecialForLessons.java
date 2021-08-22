@@ -4,7 +4,6 @@ import io.appium.java_client.AppiumDriver;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
-
 public class ArticlePageObjectCloneSpecialForLessons extends MethodsObjectMainInMyTests
 {
     private static final String
@@ -21,7 +20,6 @@ public class ArticlePageObjectCloneSpecialForLessons extends MethodsObjectMainIn
     {
         super(driver);
     }
-
 
 
     public WebElement waitForTitleElement()
