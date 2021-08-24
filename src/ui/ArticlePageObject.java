@@ -1,18 +1,17 @@
 package ui;
 
 import io.appium.java_client.AppiumDriver;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
 public class ArticlePageObject extends MainPageObject
 {
     private static final String
-                TITLE = "org.wikipedia:id/article_menu_bookmark",
-                FOOTER_ELEMENT = "//*[@text='View edit history']",
-                OPTIONS_BUTTON = "org.wikipedia:id/article_menu_bookmark",
-                OPTIONS_ADD_TO_MY_LIST_BUTTON = "org.wikipedia:id/snackbar_action",
-                MY_LIST_NAME_INPUT = "org.wikipedia:id/text_input",
-                MY_LIST_OK_BUTTON = "//*[@text='OK']";
+                TITLE = "id:org.wikipedia:id/article_menu_bookmark",
+                FOOTER_ELEMENT = "xpath://*[@text='View edit history']",
+                OPTIONS_BUTTON = "id:org.wikipedia:id/article_menu_bookmark",
+                OPTIONS_ADD_TO_MY_LIST_BUTTON = "id:org.wikipedia:id/snackbar_action",
+                MY_LIST_NAME_INPUT = "id:org.wikipedia:id/text_input",
+                MY_LIST_OK_BUTTON = "xpath://*[@text='OK']";
 
 
     public ArticlePageObject(AppiumDriver driver)
@@ -24,7 +23,7 @@ public class ArticlePageObject extends MainPageObject
 
    public WebElement waitForTitleElement()
     {
-        return this.waitForElementPresent(By.id(TITLE), "Cannot find article title on page!", 10);
+        return this.waitForElementPresent(TITLE, "Cannot find article title on page!", 10);
     }
 
     
@@ -38,7 +37,7 @@ public class ArticlePageObject extends MainPageObject
     {
         this.swipeUpToFindElement
                 (
-                        By.xpath(FOOTER_ELEMENT),
+                        FOOTER_ELEMENT,
                         "Cannot find the end of article",
                         20
                 );
@@ -48,14 +47,14 @@ public class ArticlePageObject extends MainPageObject
     {
         this.waitForElementAndClick
                 (
-                        By.id(OPTIONS_BUTTON),
+                        OPTIONS_BUTTON,
                         "Cannot find button to save",
                         5
                 );
 
         this.waitForElementAndClick
                 (
-                        By.id(OPTIONS_ADD_TO_MY_LIST_BUTTON),
+                        OPTIONS_ADD_TO_MY_LIST_BUTTON,
                         "Cannot find button 'Add To List'",
                         5
                 );
@@ -63,7 +62,7 @@ public class ArticlePageObject extends MainPageObject
 
         this.waitForElementAndSendKeys
                 (
-                        By.id(MY_LIST_NAME_INPUT),
+                        MY_LIST_NAME_INPUT,
                         name_of_folder,
                         "Cannot put text into articles folder input",
                         5
@@ -71,7 +70,7 @@ public class ArticlePageObject extends MainPageObject
 
         this.waitForElementAndClick
                 (
-                        By.xpath(MY_LIST_OK_BUTTON),
+                        MY_LIST_OK_BUTTON,
                         "Cannot press 'OK' button",
                         5
                 );

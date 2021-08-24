@@ -65,7 +65,7 @@ public class CoreTestCase extends TestCase
             capabilities.setCapability("automationName","Appium");
             capabilities.setCapability("appPackage","org.wikipedia");
             capabilities.setCapability("appActivity",".main.MainActivity");
-            capabilities.setCapability("app","/Users/user/Desktop/JavaAppium/apks/org.wikipedia_50363_apps.evozi.com.apk");
+            capabilities.setCapability("app","/Users/user/MyProjectGood/apks/org.wikipedia_50370_apps.evozi.com.apk");
 
         } else if (platform.equals(PLATFORM_IOS))
         {
